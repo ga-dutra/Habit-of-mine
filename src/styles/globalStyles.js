@@ -63,7 +63,7 @@ body {
   font-family: 'Lexend Deca', sans-serif;
 	margin-top: 70px;
 	margin-bottom: 70px;
-
+z-index: 1;
 }
 
 `;

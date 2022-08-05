@@ -13,6 +13,7 @@ import { getAllHabbits } from "../../services/trackit";
 export default function HabbitsPage() {
   const navigate = useNavigate();
   const usertoken = useContext(UserContext).userdata.token;
+  const [renderiza, setRenderiza] = useState(1);
 
   const [allHabbits, setAllHabbits] = useState({});
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function HabbitsPage() {
     promise.catch((err) => {
       console.log("erro na requisição de hábitos");
     });
-  }, []);
+  }, [renderiza]);
 
   return (
     <GrayBackground>
@@ -42,7 +43,7 @@ export default function HabbitsPage() {
             ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
             : ""}
         </p>
-        <NewHabbit />
+        <NewHabbit renderiza={renderiza} setRenderiza={setRenderiza} />
         {!allHabbits[0]
           ? ""
           : allHabbits.map((value) => (
@@ -50,14 +51,12 @@ export default function HabbitsPage() {
                 key={value.id}
                 habbitName={value.name}
                 habbitDays={value.days}
+                habbitId={value.id}
+                habbit={value}
+                renderiza={renderiza}
+                setRenderiza={setRenderiza}
               />
             ))}
-
-        {/* {!allHabbits[0]
-          ? allHabbits.map((value) => {
-              <Habbit key={value.index} allHabbits={allHabbits} />;
-            })
-          : ""} */}
       </Wrapper>
       <Footer />
     </GrayBackground>

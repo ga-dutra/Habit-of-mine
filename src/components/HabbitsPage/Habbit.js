@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import { WeekDaysContainer, WeekDay } from "./NewHabbit";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { deleteHabbit } from "../../services/trackit";
+import { UserContext } from "../../contexts/UserContext";
 
-export default function Habbit({ habbitName, habbitDays }) {
+export default function Habbit({
+  habbitName,
+  habbitDays,
+  habbitId,
+  habbit,
+  setRenderiza,
+  renderiza,
+}) {
+  const [removeHabbit, setRemoveHabbit] = useState(false);
+  const usertoken = useContext(UserContext).userdata.token;
   const days = [
     { id: 7, day: "D", selected: false },
     { id: 1, day: "S", selected: false },
@@ -12,8 +23,7 @@ export default function Habbit({ habbitName, habbitDays }) {
     { id: 5, day: "S", selected: false },
     { id: 6, day: "S", selected: false },
   ];
-
-  console.log(habbitDays);
+  console.log(habbit);
   const newDays = days.map((value) => {
     if (habbitDays.includes(value.id)) {
       return {
@@ -27,11 +37,47 @@ export default function Habbit({ habbitName, habbitDays }) {
       };
     }
   });
-  // return { ...value };
+
+  function postDeletedHabbit() {
+    console.log(habbitId);
+    const config = {
+      headers: { Authorization: `Bearer ${usertoken}` },
+    };
+    const body = habbit;
+    const promise = deleteHabbit(body, habbitId, config);
+    promise.then((res) => {
+      console.log("hábito deletado com sucesso");
+      setRenderiza(renderiza + 1);
+    });
+    promise.then((err) => {
+      console.log("não foi possível deletar o hábito");
+    });
+  }
 
   return (
     <Wrapper>
-      <ion-icon name="trash-outline"></ion-icon>
+      {removeHabbit ? (
+        <DeleteHabbitButton>
+          <span
+            onClick={() => {
+              setRemoveHabbit(false);
+            }}
+          >
+            Cancelar
+          </span>
+          <div onClick={() => postDeletedHabbit()}>
+            <h3>Apagar</h3>
+          </div>
+        </DeleteHabbitButton>
+      ) : (
+        <ion-icon
+          onClick={() => {
+            setRemoveHabbit(true);
+          }}
+          name="trash-outline"
+        ></ion-icon>
+      )}
+
       <div>
         <h2>{habbitName}</h2>
         <WeekDaysContainer>
@@ -50,7 +96,7 @@ export default function Habbit({ habbitName, habbitDays }) {
 
 const Wrapper = styled.div`
   position: relative;
-  margin-top: 30px;
+  margin-bottom: 14px;
   min-height: 90px;
   background-color: #ffffff;
   border-radius: 5px;
@@ -75,9 +121,42 @@ const Wrapper = styled.div`
     font-size: 20px;
     font-family: "Lexend Deca";
     margin-bottom: 10px;
+    max-width: calc(100% - 20px);
+    word-wrap: break-word;
   }
 
   div {
     cursor: default;
+  }
+`;
+
+const DeleteHabbitButton = styled.div`
+  position: absolute;
+  font-size: 17px;
+  top: 10px;
+  right: 2px;
+  display: flex;
+
+  div {
+    cursor: pointer;
+    width: 80px;
+    height: 28px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #ffffff;
+    margin-top: -8px;
+  }
+  h3 {
+    margin-top: -4px;
+  }
+
+  span {
+    color: #52b6ff;
+    cursor: pointer;
+    margin: 0 0 22px 4px;
+    margin-top: -10px;
   }
 `;

@@ -19,6 +19,7 @@ export default function Footer() {
 }
 
 const Wrapper = styled.div`
+  z-index: 100;
   width: 100%;
   height: 70px;
   position: fixed;
@@ -30,6 +31,7 @@ const Wrapper = styled.div`
   font-family: "Lexend Deca", sans-serif;
 
   span {
+    z-index: 5;
     font-size: 20px;
     color: #52b6ff;
   }

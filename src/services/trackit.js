@@ -37,8 +37,15 @@ function unvalidateHabbit(body) {
   return promise;
 }
 
-function deleteHabbit(body) {
-  const promise = axios.post(`${base_url}/habits/:habbitId`, body);
+function deleteHabbit(body, habbitId, config) {
+  const stringHabbitId = String(habbitId);
+  console.log(`body: ${body}`);
+  console.log(`habbitId: ${habbitId}`);
+  console.log(`stringHabbitId: ${stringHabbitId}`);
+  console.log(`config: ${config}`);
+  const promise = axios.delete(`${base_url}/habits/${stringHabbitId}`, config, {
+    data: body,
+  });
   return promise;
 }
 

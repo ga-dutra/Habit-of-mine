@@ -5,7 +5,7 @@ import { postNewHabbit } from "../../services/trackit";
 import { UserContext } from "../../contexts/UserContext";
 import LoadingAnimation from "../../common/LoadingAnimation";
 
-export default function NewHabbit() {
+export default function NewHabbit({ renderiza, setRenderiza }) {
   const [days, setDays] = useState([
     { id: 7, day: "D", selected: false },
     { id: 1, day: "S", selected: false },
@@ -96,6 +96,7 @@ export default function NewHabbit() {
         })
       );
       setHideHabbit(true);
+      setRenderiza(renderiza + 1);
     });
     promise.catch((err) => {
       console.log("erro na criação de hábito");
@@ -173,6 +174,7 @@ export default function NewHabbit() {
 
 const HabbitContainer = styled.div`
   margin-top: 30px;
+  margin-bottom: 20px;
   height: 164px;
   background-color: #ffffff;
   border-radius: 5px;

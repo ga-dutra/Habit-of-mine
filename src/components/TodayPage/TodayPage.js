@@ -1,11 +1,11 @@
-import Header from "./Header";
-import Footer from "./Footer";
-import GrayBackground from "../common/GrayBackground";
-import todaydate from "../common/todaydate";
+import Header from "../Header";
+import Footer from "../Footer";
+import GrayBackground from "../../common/GrayBackground";
+import todaydate from "../../common/todaydate";
 import styled from "styled-components";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../contexts/UserContext";
-import { getTodayHabbits } from "../services/trackit";
+import { UserContext } from "../../contexts/UserContext";
+import { getTodayHabbits } from "../../services/trackit";
 
 let todayHabbits = {};
 export default function TodayPage() {
@@ -17,7 +17,6 @@ export default function TodayPage() {
     const promise = getTodayHabbits(config);
     promise.then((res) => {
       todayHabbits = res.data;
-      console.log(todayHabbits);
       console.log("deu certo a requisição");
     });
     promise.catch((err) => {
