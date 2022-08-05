@@ -1,9 +1,17 @@
 import styled from "styled-components";
+import { HabbitContext } from "../contexts/HabbitContext";
+import { useContext } from "react";
 
 export default function AddHabbitButton() {
+  const { hideHabbit, setHideHabbit } = useContext(HabbitContext);
+
+  function showNewHabbit() {
+    setHideHabbit(false);
+  }
+
   return (
-    <Button>
-      <span>+</span>
+    <Button onClick={showNewHabbit}>
+      <div>+</div>
     </Button>
   );
 }
@@ -16,9 +24,12 @@ const Button = styled.div`
   color: #ffffff;
   font-size: 28px;
   display: flex;
+  position: relative;
   cursor: pointer;
 
-  span {
-    margin: 4px 0 0 10px;
+  div {
+    position: absolute;
+    left: 12px;
+    top: 3.5px;
   }
 `;

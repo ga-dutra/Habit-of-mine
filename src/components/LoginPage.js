@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import biglogo from "../assets/img/big-logo-trackit.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postLogin } from "../services/trackit";
 import LoadingAnimation from "./LoadingAnimation";
+import { UserContext } from "../contexts/UserContext";
 
 export default function LoginPage() {
   const [form, setForm] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const loadingAnimation = LoadingAnimation();
   const navigate = useNavigate();
+  const global = useContext(UserContext);
 
   function handleForm({ value, name }) {
-    console.log({ value, name });
     setForm({
       ...form,
       [name]: value,
     });
-    console.log(form);
   }
 
   function sendForm() {
@@ -25,13 +25,11 @@ export default function LoginPage() {
     const body = { ...form };
     const promise = postLogin(body);
     promise.then((res) => {
-      console.log(res);
-      console.log(res.data);
-      console.log(res.data.token);
-      console.log("deu certo o cadastro");
+      global.setUserdata(res.data);
+      console.log("deu certo o login");
       navigate("/hoje");
     });
-    promise.catch((res) => {
+    promise.catch((err) => {
       alert(
         "Não foi possível efetuar o login! Por favor, cheque seus dados e tente novamente."
       );

@@ -12,7 +12,6 @@ export default function SignUpPage() {
   const loadingAnimation = LoadingAnimation();
 
   function handleForm({ value, name }) {
-    console.log({ value, name });
     setForm({
       ...form,
       [name]: value,
@@ -27,7 +26,7 @@ export default function SignUpPage() {
       console.log("deu certo o cadastro");
       navigate("/");
     });
-    promise.catch((res) => {
+    promise.catch((err) => {
       alert(
         "Não foi possível concluir o cadastro! Por favor, cheque seus dados e tente novamente."
       );

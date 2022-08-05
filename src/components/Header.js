@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import smallLogo from "../assets/img/small-logo-trackit.svg";
 import profilepic from "../assets/img/batman.png";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function Header() {
+  const userdata = useContext(UserContext).userdata;
   return (
     <>
       <Wrapper>
         <img src={smallLogo} alt="" />
         <Profile>
-          <img src={profilepic} alt="" />
+          <img src={userdata.image} alt="" />
         </Profile>
       </Wrapper>
     </>
