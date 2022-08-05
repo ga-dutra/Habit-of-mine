@@ -9,8 +9,6 @@ export default function LoadingAnimation() {
         radius="9"
         color="#ffffff"
         ariaLabel="three-dots-loading"
-        wrapperStyle
-        wrapperClass
       />
     </>
   );

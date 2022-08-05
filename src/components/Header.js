@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import smallLogo from "../assets/img/small-logo-trackit.svg";
-import profilepic from "../assets/img/batman.png";
 import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 

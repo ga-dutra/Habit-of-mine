@@ -6,18 +6,28 @@ import GrayBackground from "../../common/GrayBackground";
 import { UserContext } from "../../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NewHabbit from "./NewHabbit";
 import Habbit from "./Habbit";
+import { getAllHabbits } from "../../services/trackit";
 
 export default function HabbitsPage() {
   const navigate = useNavigate();
-  const userdata = useContext(UserContext).userdata;
+  const usertoken = useContext(UserContext).userdata.token;
 
-  // useEffect(() => {
-  //   if (userdata === {}) {
-  //     console.log("entrei");
-  //     navigate("/");
-  //   }
-  // }, [useContext(UserContext).userdata]);
+  const [allHabbits, setAllHabbits] = useState({});
+  useEffect(() => {
+    const config = {
+      headers: { Authorization: `Bearer ${usertoken}` },
+    };
+    const promise = getAllHabbits(config);
+    promise.then((res) => {
+      setAllHabbits(res.data);
+      console.log("sucesso na requisição de hábitos");
+    });
+    promise.catch((err) => {
+      console.log("erro na requisição de hábitos");
+    });
+  }, []);
 
   return (
     <GrayBackground>
@@ -28,10 +38,26 @@ export default function HabbitsPage() {
           <AddHabbitButton></AddHabbitButton>
         </Title>
         <p>
-          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
-          começar a trackear!
+          {!allHabbits[0]
+            ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
+            : ""}
         </p>
-        <Habbit />
+        <NewHabbit />
+        {!allHabbits[0]
+          ? ""
+          : allHabbits.map((value) => (
+              <Habbit
+                key={value.id}
+                habbitName={value.name}
+                habbitDays={value.days}
+              />
+            ))}
+
+        {/* {!allHabbits[0]
+          ? allHabbits.map((value) => {
+              <Habbit key={value.index} allHabbits={allHabbits} />;
+            })
+          : ""} */}
       </Wrapper>
       <Footer />
     </GrayBackground>

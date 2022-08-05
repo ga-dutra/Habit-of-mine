@@ -22,8 +22,8 @@ function getTodayHabbits(body) {
   return promise;
 }
 
-function createHabbit(body) {
-  const promise = axios.post(`${base_url}/habits`, body);
+function postNewHabbit(body, config) {
+  const promise = axios.post(`${base_url}/habits`, body, config);
   return promise;
 }
 
@@ -53,7 +53,7 @@ export {
   getAllHabbits,
   getTodayHabbits,
   getHabbitsHistory,
-  createHabbit,
+  postNewHabbit,
   deleteHabbit,
   validateHabbit,
   unvalidateHabbit,

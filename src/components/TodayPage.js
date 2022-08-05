@@ -23,7 +23,7 @@ export default function TodayPage() {
     promise.catch((err) => {
       console.log("não deu certo a requisição");
     });
-  }, []);
+  }, [usertoken]);
   return (
     <GrayBackground>
       <Header />

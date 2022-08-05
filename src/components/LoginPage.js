@@ -3,7 +3,7 @@ import biglogo from "../assets/img/big-logo-trackit.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { postLogin } from "../services/trackit";
-import LoadingAnimation from "./LoadingAnimation";
+import LoadingAnimation from "../common/LoadingAnimation";
 import { UserContext } from "../contexts/UserContext";
 
 export default function LoginPage() {

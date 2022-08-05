@@ -3,7 +3,7 @@ import { HabbitContext } from "../contexts/HabbitContext";
 import { useContext } from "react";
 
 export default function AddHabbitButton() {
-  const { hideHabbit, setHideHabbit } = useContext(HabbitContext);
+  const { setHideHabbit } = useContext(HabbitContext);
 
   function showNewHabbit() {
     setHideHabbit(false);
@@ -29,7 +29,7 @@ const Button = styled.div`
 
   div {
     position: absolute;
-    left: 12px;
+    left: 11.5px;
     top: 3.5px;
   }
 `;

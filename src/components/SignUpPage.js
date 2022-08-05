@@ -2,7 +2,7 @@ import biglogo from "../assets/img/big-logo-trackit.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FormWrapper } from "./LoginPage";
-import LoadingAnimation from "./LoadingAnimation";
+import LoadingAnimation from "../common/LoadingAnimation";
 import { postSignUp } from "../services/trackit";
 
 export default function SignUpPage() {
