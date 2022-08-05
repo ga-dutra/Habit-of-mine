@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 26px;
+  z-index: 2;
 `;
 
 const Profile = styled.div`

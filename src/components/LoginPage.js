@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { postLogin } from "../services/trackit";
 import LoadingAnimation from "../common/LoadingAnimation";
 import { UserContext } from "../contexts/UserContext";
+import WhiteBackground from "../common/WhiteBackground";
 
 export default function LoginPage() {
   const [form, setForm] = useState({});
@@ -38,7 +39,7 @@ export default function LoginPage() {
   }
 
   return (
-    <>
+    <WhiteBackground>
       <FormWrapper enabled={isLoading}>
         <img src={biglogo} alt="Trackit Logo" />
         <form
@@ -75,7 +76,7 @@ export default function LoginPage() {
           </Link>
         </form>
       </FormWrapper>
-    </>
+    </WhiteBackground>
   );
 }
 

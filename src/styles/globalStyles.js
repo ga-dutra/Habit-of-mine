@@ -64,6 +64,7 @@ body {
 	margin-top: 70px;
 	margin-bottom: 70px;
 z-index: 1;
+background-color: #e5e5e5;
 }
 
 `;

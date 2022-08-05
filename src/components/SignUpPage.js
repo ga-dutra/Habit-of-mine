@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FormWrapper } from "./LoginPage";
 import LoadingAnimation from "../common/LoadingAnimation";
 import { postSignUp } from "../services/trackit";
+import WhiteBackground from "../common/WhiteBackground";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({});
@@ -35,61 +36,63 @@ export default function SignUpPage() {
   }
 
   return (
-    <FormWrapper enabled={isLoading}>
-      <img src={biglogo} alt="Trackit Logo" />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          sendForm();
-        }}
-      >
-        <input
-          disabled={isLoading}
-          placeholder="email"
-          name="email"
-          type="email"
-          onChange={(e) => {
-            handleForm({ name: e.target.name, value: e.target.value });
+    <WhiteBackground>
+      <FormWrapper enabled={isLoading}>
+        <img src={biglogo} alt="Trackit Logo" />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendForm();
           }}
-          required
-        ></input>
-        <input
-          disabled={isLoading}
-          placeholder="senha"
-          name="password"
-          type="password"
-          onChange={(e) => {
-            handleForm({ name: e.target.name, value: e.target.value });
-          }}
-          required
-        ></input>
-        <input
-          disabled={isLoading}
-          placeholder="nome"
-          name="name"
-          type="text"
-          onChange={(e) => {
-            handleForm({ name: e.target.name, value: e.target.value });
-          }}
-          required
-        ></input>
-        <input
-          disabled={isLoading}
-          placeholder="foto"
-          name="image"
-          type="url"
-          onChange={(e) => {
-            handleForm({ name: e.target.name, value: e.target.value });
-          }}
-          required
-        ></input>
-        <button disabled={isLoading}>
-          {isLoading ? loadingAnimation : "Cadastrar"}
-        </button>
-        <Link to="/">
-          <span>Já tem uma conta? Faça login!</span>
-        </Link>
-      </form>
-    </FormWrapper>
+        >
+          <input
+            disabled={isLoading}
+            placeholder="email"
+            name="email"
+            type="email"
+            onChange={(e) => {
+              handleForm({ name: e.target.name, value: e.target.value });
+            }}
+            required
+          ></input>
+          <input
+            disabled={isLoading}
+            placeholder="senha"
+            name="password"
+            type="password"
+            onChange={(e) => {
+              handleForm({ name: e.target.name, value: e.target.value });
+            }}
+            required
+          ></input>
+          <input
+            disabled={isLoading}
+            placeholder="nome"
+            name="name"
+            type="text"
+            onChange={(e) => {
+              handleForm({ name: e.target.name, value: e.target.value });
+            }}
+            required
+          ></input>
+          <input
+            disabled={isLoading}
+            placeholder="foto"
+            name="image"
+            type="url"
+            onChange={(e) => {
+              handleForm({ name: e.target.name, value: e.target.value });
+            }}
+            required
+          ></input>
+          <button disabled={isLoading}>
+            {isLoading ? loadingAnimation : "Cadastrar"}
+          </button>
+          <Link to="/">
+            <span>Já tem uma conta? Faça login!</span>
+          </Link>
+        </form>
+      </FormWrapper>
+    </WhiteBackground>
   );
 }

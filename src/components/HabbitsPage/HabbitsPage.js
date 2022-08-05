@@ -13,7 +13,7 @@ import { getAllHabbits } from "../../services/trackit";
 export default function HabbitsPage() {
   const navigate = useNavigate();
   const usertoken = useContext(UserContext).userdata.token;
-  const [renderiza, setRenderiza] = useState(1);
+  const [render, setRender] = useState(1);
 
   const [allHabbits, setAllHabbits] = useState({});
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function HabbitsPage() {
     promise.catch((err) => {
       console.log("erro na requisição de hábitos");
     });
-  }, [renderiza]);
+  }, [render]);
 
   return (
     <GrayBackground>
@@ -38,12 +38,14 @@ export default function HabbitsPage() {
           <h1>Meus hábitos</h1>
           <AddHabbitButton></AddHabbitButton>
         </Title>
+
         <p>
           {!allHabbits[0]
             ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
             : ""}
         </p>
-        <NewHabbit renderiza={renderiza} setRenderiza={setRenderiza} />
+
+        <NewHabbit render={render} setRender={setRender} />
         {!allHabbits[0]
           ? ""
           : allHabbits.map((value) => (
@@ -53,8 +55,8 @@ export default function HabbitsPage() {
                 habbitDays={value.days}
                 habbitId={value.id}
                 habbit={value}
-                renderiza={renderiza}
-                setRenderiza={setRenderiza}
+                render={render}
+                setRender={setRender}
               />
             ))}
       </Wrapper>
@@ -66,8 +68,10 @@ export default function HabbitsPage() {
 const Wrapper = styled.div`
   width: calc(100% - 60px);
   margin: 0 30px;
-
+  background-color: #e5e5e5;
+  padding-bottom: 80px;
   p {
+    padding-top: 110px;
     margin-top: 28px;
     color: #666666;
     font-size: 18px;
@@ -75,10 +79,15 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  padding-top: 30px;
+  position: fixed;
+  width: calc(100% - 60px);
+  height: 80px;
+  padding-top: 26px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
+  background-color: #e5e5e5;
 
   h1 {
     color: #126ba5;

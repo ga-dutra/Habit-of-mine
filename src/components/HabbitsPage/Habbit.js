@@ -9,8 +9,8 @@ export default function Habbit({
   habbitDays,
   habbitId,
   habbit,
-  setRenderiza,
-  renderiza,
+  setRender,
+  render,
 }) {
   const [removeHabbit, setRemoveHabbit] = useState(false);
   const usertoken = useContext(UserContext).userdata.token;
@@ -47,7 +47,7 @@ export default function Habbit({
     const promise = deleteHabbit(body, habbitId, config);
     promise.then((res) => {
       console.log("hábito deletado com sucesso");
-      setRenderiza(renderiza + 1);
+      setRender(render + 1);
     });
     promise.then((err) => {
       console.log("não foi possível deletar o hábito");
@@ -110,7 +110,7 @@ const Wrapper = styled.div`
 
   ion-icon {
     position: absolute;
-    font-size: 17px;
+    font-size: 20px;
     top: 10px;
     right: 10px;
     cursor: pointer;
