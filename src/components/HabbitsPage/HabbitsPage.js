@@ -5,13 +5,12 @@ import Header from "../Header";
 import GrayBackground from "../../common/GrayBackground";
 import { UserContext } from "../../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NewHabbit from "./NewHabbit";
 import Habbit from "./Habbit";
 import { getAllHabbits } from "../../services/trackit";
+import { progressPercentege } from "../TodayPage/TodayPage";
 
 export default function HabbitsPage() {
-  const navigate = useNavigate();
   const usertoken = useContext(UserContext).userdata.token;
   const [render, setRender] = useState(1);
 
@@ -23,12 +22,11 @@ export default function HabbitsPage() {
     const promise = getAllHabbits(config);
     promise.then((res) => {
       setAllHabbits(res.data);
-      console.log("sucesso na requisição de hábitos");
     });
     promise.catch((err) => {
       console.log("erro na requisição de hábitos");
     });
-  }, [render]);
+  }, [render, usertoken]);
 
   return (
     <GrayBackground>
@@ -38,13 +36,11 @@ export default function HabbitsPage() {
           <h1>Meus hábitos</h1>
           <AddHabbitButton></AddHabbitButton>
         </Title>
-
         <p>
           {!allHabbits[0]
             ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
             : ""}
         </p>
-
         <NewHabbit render={render} setRender={setRender} />
         {!allHabbits[0]
           ? ""
@@ -60,13 +56,13 @@ export default function HabbitsPage() {
               />
             ))}
       </Wrapper>
-      <Footer />
+      <Footer progressPercentege={progressPercentege} />
     </GrayBackground>
   );
 }
 
 const Wrapper = styled.div`
-  width: calc(100% - 60px);
+  width: calc(100vw - 60px);
   margin: 0 30px;
   background-color: #e5e5e5;
   padding-bottom: 80px;
@@ -75,6 +71,7 @@ const Wrapper = styled.div`
     margin-top: 28px;
     color: #666666;
     font-size: 18px;
+    max-width: 200px;
   }
 `;
 

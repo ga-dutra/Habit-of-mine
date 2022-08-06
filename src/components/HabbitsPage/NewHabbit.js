@@ -47,11 +47,13 @@ export default function NewHabbit({ render, setRender }) {
       if (value.selected === true) {
         return value.id;
       }
+      return false;
     });
     const selectedDaysIds = selectedDays.map((value) => {
       if (value.selected === true) {
         return value.id;
       }
+      return false;
     });
 
     setNewHabbit({
@@ -78,14 +80,12 @@ export default function NewHabbit({ render, setRender }) {
   }
   function postHabbit(body) {
     setIsLoading(true);
-    console.log(body);
 
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
     };
     const promise = postNewHabbit(body, config);
     promise.then((res) => {
-      console.log("requisição de criação de hábito com sucesso");
       setInputValue("");
       setDays(
         days.map((value) => {
@@ -100,7 +100,6 @@ export default function NewHabbit({ render, setRender }) {
       setRender(render + 1);
     });
     promise.catch((err) => {
-      console.log("erro na criação de hábito");
       alert(
         "Ocorreu um erro ao salvar o novo hábito. Por favor, cheque as informações."
       );
@@ -109,7 +108,6 @@ export default function NewHabbit({ render, setRender }) {
   }
 
   function saveHabbit() {
-    console.log(newHabbit);
     if (!form.newHabbit) {
       alert("Por favor, digite um hábito válido!");
     } else if (

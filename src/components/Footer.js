@@ -2,14 +2,14 @@ import styled from "styled-components";
 import Progressbar from "./Progressbar";
 import { Link } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({ progressPercentege }) {
   return (
     <Wrapper>
       <Link to="/habitos">
         <span>Hábitos</span>
       </Link>
       <Link to="/hoje">
-        <Progressbar />
+        <Progressbar progressPercentege={progressPercentege} />
       </Link>
       <Link to="/historico">
         <span>Histórico</span>

@@ -4,7 +4,7 @@ import SignUpPage from "./SignUpPage";
 import GlobalStyle from "../styles/globalStyles";
 import HabbitsPage from "./HabbitsPage/HabbitsPage";
 import TodayPage from "./TodayPage/TodayPage";
-import HistoryPage from "./HistoryPage";
+import HistoryPage from "./HistoryPage/HistoryPage";
 import { UserStorage } from "../contexts/UserContext";
 import { HabbitStorage } from "../contexts/HabbitContext";
 

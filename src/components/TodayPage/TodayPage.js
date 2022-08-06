@@ -8,6 +8,8 @@ import { UserContext } from "../../contexts/UserContext";
 import { getTodayHabbits } from "../../services/trackit";
 import TodayHabbit from "./TodayHabbit";
 
+let progressPercentege = 0;
+
 export default function TodayPage() {
   const [render, setRender] = useState(1);
   const usertoken = useContext(UserContext).userdata.token;
@@ -16,23 +18,38 @@ export default function TodayPage() {
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
     };
-
     const promise = getTodayHabbits(config);
     promise.then((res) => {
       setTodayHabbits(res.data);
-      console.log(todayHabbits);
-      console.log("deu certo a requisição");
     });
     promise.catch((err) => {
       console.log("não deu certo a requisição");
     });
-  }, [render]);
+  }, [render, usertoken]);
+
+  function habbitsDoneQuantity() {
+    let quantityDone = 0;
+    if (todayHabbits[0]) {
+      todayHabbits.forEach((value) => {
+        if (value.done === true) {
+          quantityDone++;
+        }
+      });
+    }
+    progressPercentege = (quantityDone / todayHabbits.length) * 100;
+    return progressPercentege;
+  }
+
   return (
     <GrayBackground>
       <Header />
-      <Title>
+      <Title isDone={habbitsDoneQuantity()}>
         <Date>{todaydate}</Date>
-        <p>Nenhum hábito concluído ainda</p>
+        <p>
+          {habbitsDoneQuantity() === 0
+            ? "Nenhum hábito concluído ainda"
+            : `${habbitsDoneQuantity()}% dos hábitos concluídos`}
+        </p>
       </Title>
       <HabbitsContainer>
         {!todayHabbits[0]
@@ -51,7 +68,7 @@ export default function TodayPage() {
               />
             ))}
       </HabbitsContainer>
-      <Footer />
+      <Footer progressPercentege={habbitsDoneQuantity()} />
     </GrayBackground>
   );
 }
@@ -67,8 +84,8 @@ const Title = styled.div`
 
   p {
     margin-top: 12px;
-    color: #bababa;
-    font-size: #bababa;
+    color: ${(props) => (props.isDone !== 0 ? "#8FC549" : "#bababa")};
+    font-size: 18px;
   }
 `;
 
@@ -83,3 +100,5 @@ const HabbitsContainer = styled.div`
   margin: 0 30px;
   padding-bottom: 80px;
 `;
+
+export { progressPercentege };

@@ -23,7 +23,7 @@ export default function Habbit({
     { id: 5, day: "S", selected: false },
     { id: 6, day: "S", selected: false },
   ];
-  console.log(habbit);
+
   const newDays = days.map((value) => {
     if (habbitDays.includes(value.id)) {
       return {
@@ -39,18 +39,16 @@ export default function Habbit({
   });
 
   function postDeletedHabbit() {
-    console.log(habbitId);
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
     };
     const body = habbit;
     const promise = deleteHabbit(body, habbitId, config);
     promise.then((res) => {
-      console.log("hábito deletado com sucesso");
       setRender(render + 1);
     });
-    promise.then((err) => {
-      console.log("não foi possível deletar o hábito");
+    promise.catch((err) => {
+      alert("não foi possível deletar o hábito");
     });
   }
 
@@ -121,7 +119,7 @@ const Wrapper = styled.div`
     font-size: 20px;
     font-family: "Lexend Deca";
     margin-bottom: 10px;
-    max-width: calc(100% - 20px);
+    max-width: calc(100vw - 20px);
     word-wrap: break-word;
   }
 

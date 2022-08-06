@@ -27,7 +27,6 @@ export default function LoginPage() {
     const promise = postLogin(body);
     promise.then((res) => {
       global.setUserdata(res.data);
-      console.log("deu certo o login");
       navigate("/hoje");
     });
     promise.catch((err) => {

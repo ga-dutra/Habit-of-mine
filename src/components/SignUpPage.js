@@ -24,7 +24,6 @@ export default function SignUpPage() {
     setIsLoading(true);
     const promise = postSignUp(body);
     promise.then((res) => {
-      console.log("deu certo o cadastro");
       navigate("/");
     });
     promise.catch((err) => {
