@@ -9,7 +9,6 @@ import { getTodayHabbits } from "../../services/trackit";
 import TodayHabbit from "./TodayHabbit";
 
 let progressPercentege = 0;
-
 export default function TodayPage() {
   const [render, setRender] = useState(1);
   const usertoken = useContext(UserContext).userdata.token;
@@ -29,6 +28,7 @@ export default function TodayPage() {
 
   function habbitsDoneQuantity() {
     let quantityDone = 0;
+
     if (todayHabbits[0]) {
       todayHabbits.forEach((value) => {
         if (value.done === true) {
@@ -36,17 +36,27 @@ export default function TodayPage() {
         }
       });
     }
-    progressPercentege = (quantityDone / todayHabbits.length) * 100;
+    progressPercentege = Math.round((quantityDone / todayHabbits.length) * 100);
     return progressPercentege;
   }
+
+  const areThereTodayHabbits = isNaN(habbitsDoneQuantity());
 
   return (
     <GrayBackground>
       <Header />
-      <Title isDone={habbitsDoneQuantity()}>
+      <Title
+        isDone={habbitsDoneQuantity()}
+        areThereTodayHabbits={areThereTodayHabbits}
+      >
         <Date>{todaydate}</Date>
+        <h2>
+          {isNaN(habbitsDoneQuantity())
+            ? "Você ainda não possui hábitos cadastrados para o dia de hoje!"
+            : ""}
+        </h2>
         <p>
-          {habbitsDoneQuantity() === 0
+          {habbitsDoneQuantity() === 0 && !isNaN(habbitsDoneQuantity())
             ? "Nenhum hábito concluído ainda"
             : `${habbitsDoneQuantity()}% dos hábitos concluídos`}
         </p>
@@ -85,6 +95,13 @@ const Title = styled.div`
   p {
     margin-top: 12px;
     color: ${(props) => (props.isDone !== 0 ? "#8FC549" : "#bababa")};
+    display: ${(props) => (props.areThereTodayHabbits ? "none" : "inherit")};
+    font-size: 18px;
+  }
+
+  h2 {
+    margin-top: 12px;
+    color: #bababa;
     font-size: 18px;
   }
 `;

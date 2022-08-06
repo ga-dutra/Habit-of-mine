@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 export default function Progressbar({ progressPercentege }) {
   const percentage = progressPercentege;
+
   return (
     <ProgressBarContainer>
       <CircularProgressbar
-        value={percentage}
+        value={isNaN(progressPercentege) ? 0 : percentage}
         text={`Hoje`}
         background
         backgroundPadding={6}

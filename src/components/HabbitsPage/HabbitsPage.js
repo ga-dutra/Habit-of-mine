@@ -7,14 +7,14 @@ import { UserContext } from "../../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import NewHabbit from "./NewHabbit";
 import Habbit from "./Habbit";
-import { getAllHabbits } from "../../services/trackit";
-import { progressPercentege } from "../TodayPage/TodayPage";
+import { getAllHabbits, getTodayHabbits } from "../../services/trackit";
 
 export default function HabbitsPage() {
   const usertoken = useContext(UserContext).userdata.token;
   const [render, setRender] = useState(1);
-
+  const [todayHabbits, setTodayHabbits] = useState({});
   const [allHabbits, setAllHabbits] = useState({});
+
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
@@ -27,6 +27,33 @@ export default function HabbitsPage() {
       console.log("erro na requisição de hábitos");
     });
   }, [render, usertoken]);
+
+  useEffect(() => {
+    const config = {
+      headers: { Authorization: `Bearer ${usertoken}` },
+    };
+    const promise = getTodayHabbits(config);
+    promise.then((res) => {
+      setTodayHabbits(res.data);
+    });
+    promise.catch((err) => {
+      console.log("não deu certo a requisição");
+    });
+  }, [render, usertoken]);
+
+  function habbitsDoneQuantity() {
+    let progressPercentege = 0;
+    let quantityDone = 0;
+    if (todayHabbits[0]) {
+      todayHabbits.forEach((value) => {
+        if (value.done === true) {
+          quantityDone++;
+        }
+      });
+    }
+    progressPercentege = Math.round((quantityDone / todayHabbits.length) * 100);
+    return progressPercentege;
+  }
 
   return (
     <GrayBackground>
@@ -56,7 +83,7 @@ export default function HabbitsPage() {
               />
             ))}
       </Wrapper>
-      <Footer progressPercentege={progressPercentege} />
+      <Footer progressPercentege={habbitsDoneQuantity()} />
     </GrayBackground>
   );
 }
@@ -78,7 +105,10 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   position: fixed;
-  width: calc(100% - 60px);
+  top: 60px;
+  left: 0;
+  padding: 0 30px;
+  width: 100%;
   height: 80px;
   padding-top: 26px;
   display: flex;
@@ -90,5 +120,6 @@ const Title = styled.div`
   h1 {
     color: #126ba5;
     font-size: 23px;
+    margin-right: 30px;
   }
 `;

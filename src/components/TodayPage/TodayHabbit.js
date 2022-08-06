@@ -4,7 +4,6 @@ import { useState, useContext } from "react";
 import { validateHabbit, unvalidateHabbit } from "../../services/trackit";
 
 export default function TodayHabbit({
-  habbit,
   habbitName,
   habbitDone,
   habbitId,
@@ -82,7 +81,7 @@ const Wrapper = styled.div`
     font-size: 20px;
     font-family: "Lexend Deca";
     margin-bottom: 10px;
-    max-width: calc(100% - 42px);
+    max-width: calc(100% - 56px);
     word-wrap: break-word;
   }
 
