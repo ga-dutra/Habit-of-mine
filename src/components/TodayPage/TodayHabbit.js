@@ -82,7 +82,7 @@ const Wrapper = styled.div`
     font-size: 20px;
     font-family: "Lexend Deca";
     margin-bottom: 10px;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 42px);
     word-wrap: break-word;
   }
 

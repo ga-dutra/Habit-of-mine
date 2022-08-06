@@ -72,6 +72,7 @@ const Wrapper = styled.div`
     color: #666666;
     font-size: 18px;
     max-width: 200px;
+    word-wrap: break-word;
   }
 `;
 
