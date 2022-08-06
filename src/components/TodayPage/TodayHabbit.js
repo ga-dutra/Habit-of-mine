@@ -1,21 +1,53 @@
 import styled from "styled-components";
 import { UserContext } from "../../contexts/UserContext";
-import { useContext } from "react/cjs/react.development";
+import { useState, useContext } from "react";
+import { validateHabbit, unvalidateHabbit } from "../../services/trackit";
 
 export default function TodayHabbit({
+  habbit,
   habbitName,
   habbitDone,
+  habbitId,
   habbitCurrentSequence,
   habbitHighestSequence,
   render,
   setRender,
 }) {
+  const usertoken = useContext(UserContext).userdata.token;
+  const [isDone, setIsDone] = useState(habbitDone);
+  function checkHabbit() {
+    const config = {
+      headers: { Authorization: `Bearer ${usertoken}` },
+    };
+    if (!isDone) {
+      const promise = validateHabbit(config, habbitId);
+      promise.then((res) => {
+        console.log("hábito validado com sucesso");
+        setIsDone(true);
+        setRender(render + 1);
+      });
+      promise.catch((err) => {
+        console.log("erro ao tentar validar hábito");
+      });
+    } else {
+      const promise = unvalidateHabbit(config, habbitId);
+      promise.then((res) => {
+        console.log("hábito invalidado com sucesso");
+        setIsDone(false);
+        setRender(render + 1);
+      });
+      promise.catch((err) => {
+        console.log("erro ao tentar invalidar hábito");
+      });
+    }
+  }
+
   return (
-    <Wrapper>
+    <Wrapper isDone={isDone}>
       <h2>{habbitName}</h2>
       <h3>{`Sequência atual: ${habbitCurrentSequence}`}</h3>
       <h3>{`Seu recorde: ${habbitHighestSequence}`}</h3>
-      <ion-icon name="checkbox"></ion-icon>
+      <ion-icon onClick={checkHabbit} name="checkbox"></ion-icon>
     </Wrapper>
   );
 }
@@ -49,8 +81,8 @@ const Wrapper = styled.div`
     right: 10px;
     top: 10px;
     font-size: 76px;
-    fill: green;
-    fill: #e7e7e7;
+    fill: ${(props) => (props.isDone ? "green" : "#e5e5e5")};
+
     cursor: pointer;
   }
 `;

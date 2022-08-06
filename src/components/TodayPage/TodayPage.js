@@ -16,6 +16,7 @@ export default function TodayPage() {
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
     };
+
     const promise = getTodayHabbits(config);
     promise.then((res) => {
       setTodayHabbits(res.data);
@@ -39,8 +40,10 @@ export default function TodayPage() {
           : todayHabbits.map((value) => (
               <TodayHabbit
                 key={value.id}
+                habbit={value}
                 habbitName={value.name}
                 habbitDone={value.done}
+                habbitId={value.id}
                 habbitCurrentSequence={value.currentSequence}
                 habbitHighestSequence={value.highestSequence}
                 render={render}

@@ -27,22 +27,28 @@ function postNewHabbit(body, config) {
   return promise;
 }
 
-function validateHabbit(body) {
-  const promise = axios.post(`${base_url}/habits/:habbitIt/check`, body);
+function validateHabbit(config, habbitId) {
+  const stringHabbitId = String(habbitId);
+  const promise = axios.post(
+    `${base_url}/habits/${stringHabbitId}/check`,
+    {},
+    config
+  );
   return promise;
 }
 
-function unvalidateHabbit(body) {
-  const promise = axios.post(`${base_url}/habits/:habbitIt/uncheck`, body);
+function unvalidateHabbit(config, habbitId) {
+  const stringHabbitId = String(habbitId);
+  const promise = axios.post(
+    `${base_url}/habits/${stringHabbitId}/uncheck`,
+    {},
+    config
+  );
   return promise;
 }
 
 function deleteHabbit(body, habbitId, config) {
   const stringHabbitId = String(habbitId);
-  console.log(`body: ${body}`);
-  console.log(`habbitId: ${habbitId}`);
-  console.log(`stringHabbitId: ${stringHabbitId}`);
-  console.log(`config: ${config}`);
   const promise = axios.delete(`${base_url}/habits/${stringHabbitId}`, config, {
     data: body,
   });
