@@ -98,7 +98,7 @@ const Wrapper = styled.div`
     margin-top: 28px;
     color: #666666;
     font-size: 18px;
-    max-width: 200px;
+    width: 100%;
     word-wrap: break-word;
   }
 `;

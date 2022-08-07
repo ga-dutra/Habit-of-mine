@@ -88,7 +88,6 @@ const Title = styled.div`
   position: fixed;
   top: 72px;
   display: flex;
-  height: 100px;
   width: calc(100%);
   margin: 0 30px;
   flex-direction: column;
@@ -104,6 +103,7 @@ const Title = styled.div`
   }
 
   h2 {
+    width: calc(100% - 60px);
     margin-top: 12px;
     color: #bababa;
     font-size: 18px;
