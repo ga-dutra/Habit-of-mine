@@ -7,12 +7,14 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { getTodayHabbits } from "../../services/trackit";
 import TodayHabbit from "./TodayHabbit";
+import { useNavigate } from "react-router-dom";
 
 let progressPercentege = 0;
 export default function TodayPage() {
   const [render, setRender] = useState(1);
   const usertoken = useContext(UserContext).userdata.token;
   const [todayHabbits, setTodayHabbits] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
@@ -23,8 +25,9 @@ export default function TodayPage() {
     });
     promise.catch((err) => {
       console.log("não deu certo a requisição");
+      navigate("/");
     });
-  }, [render, usertoken]);
+  }, [render, usertoken, navigate]);
 
   function habbitsDoneQuantity() {
     let quantityDone = 0;

@@ -8,12 +8,14 @@ import { useContext, useEffect, useState } from "react";
 import NewHabbit from "./NewHabbit";
 import Habbit from "./Habbit";
 import { getAllHabbits, getTodayHabbits } from "../../services/trackit";
+import { useNavigate } from "react-router-dom";
 
 export default function HabbitsPage() {
   const usertoken = useContext(UserContext).userdata.token;
   const [render, setRender] = useState(1);
   const [todayHabbits, setTodayHabbits] = useState({});
   const [allHabbits, setAllHabbits] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const config = {
@@ -25,8 +27,9 @@ export default function HabbitsPage() {
     });
     promise.catch((err) => {
       console.log("erro na requisição de hábitos");
+      navigate("/");
     });
-  }, [render, usertoken]);
+  }, [render, usertoken, navigate]);
 
   useEffect(() => {
     const config = {
@@ -38,8 +41,9 @@ export default function HabbitsPage() {
     });
     promise.catch((err) => {
       console.log("não deu certo a requisição");
+      navigate("/");
     });
-  }, [render, usertoken]);
+  }, [render, usertoken, navigate]);
 
   function habbitsDoneQuantity() {
     let progressPercentege = 0;
