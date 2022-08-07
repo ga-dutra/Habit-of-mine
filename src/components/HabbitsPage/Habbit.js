@@ -15,17 +15,16 @@ export default function Habbit({
   const [removeHabbit, setRemoveHabbit] = useState(false);
   const usertoken = useContext(UserContext).userdata.token;
   const days = [
-    { id: 7, day: "D", selected: false },
-    { id: 1, day: "S", selected: false },
-    { id: 2, day: "T", selected: false },
-    { id: 3, day: "Q", selected: false },
-    { id: 4, day: "Q", selected: false },
-    { id: 5, day: "S", selected: false },
-    { id: 6, day: "S", selected: false },
+    { id: "0", day: "D", selected: false },
+    { id: "1", day: "S", selected: false },
+    { id: "2", day: "T", selected: false },
+    { id: "3", day: "Q", selected: false },
+    { id: "4", day: "Q", selected: false },
+    { id: "5", day: "S", selected: false },
+    { id: "6", day: "S", selected: false },
   ];
-
   const newDays = days.map((value) => {
-    if (habbitDays.includes(value.id)) {
+    if (habbitDays.includes(Number(value.id))) {
       return {
         ...value,
         selected: true,

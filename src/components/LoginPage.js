@@ -13,7 +13,6 @@ export default function LoginPage() {
   const loadingAnimation = LoadingAnimation();
   const navigate = useNavigate();
   const { setUserdata } = useContext(UserContext);
-
   const userStored = JSON.parse(localStorage.getItem("user"));
   if (userStored) {
     const userStoredData = {

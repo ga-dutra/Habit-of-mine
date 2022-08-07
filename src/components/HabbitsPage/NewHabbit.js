@@ -7,13 +7,13 @@ import LoadingAnimation from "../../common/LoadingAnimation";
 
 export default function NewHabbit({ render, setRender }) {
   const [days, setDays] = useState([
-    { id: 7, day: "D", selected: false },
-    { id: 1, day: "S", selected: false },
-    { id: 2, day: "T", selected: false },
-    { id: 3, day: "Q", selected: false },
-    { id: 4, day: "Q", selected: false },
-    { id: 5, day: "S", selected: false },
-    { id: 6, day: "S", selected: false },
+    { id: "0", day: "D", selected: false },
+    { id: "1", day: "S", selected: false },
+    { id: "2", day: "T", selected: false },
+    { id: "3", day: "Q", selected: false },
+    { id: "4", day: "Q", selected: false },
+    { id: "5", day: "S", selected: false },
+    { id: "6", day: "S", selected: false },
   ]);
 
   const [form, setForm] = useState({});
@@ -78,9 +78,9 @@ export default function NewHabbit({ render, setRender }) {
       setHideHabbit(true);
     }
   }
-  function postHabbit(body) {
+  function postHabbit(habbit) {
     setIsLoading(true);
-
+    const body = habbit;
     const config = {
       headers: { Authorization: `Bearer ${usertoken}` },
     };
@@ -118,7 +118,9 @@ export default function NewHabbit({ render, setRender }) {
       }).length === 0
     ) {
       alert("Por favor, selecione pelo menos um dia da semana para o hábito!");
-    } else postHabbit(newHabbit);
+    } else {
+      postHabbit(newHabbit);
+    }
   }
 
   const loadingAnimation = LoadingAnimation();

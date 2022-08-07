@@ -41,7 +41,7 @@ export default function HabbitsPage() {
     });
     promise.catch((err) => {
       console.log("não deu certo a requisição");
-      navigate("/");
+      // navigate("/");
     });
   }, [render, usertoken, navigate]);
 

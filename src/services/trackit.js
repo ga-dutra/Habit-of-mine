@@ -17,8 +17,8 @@ function getAllHabbits(body) {
   return promise;
 }
 
-function getTodayHabbits(body) {
-  const promise = axios.get(`${base_url}/habits/today`, body);
+function getTodayHabbits(config) {
+  const promise = axios.get(`${base_url}/habits/today`, config);
   return promise;
 }
 

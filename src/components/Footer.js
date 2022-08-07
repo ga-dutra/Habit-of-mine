@@ -3,11 +3,15 @@ import Progressbar from "./Progressbar";
 import { Link } from "react-router-dom";
 import logoutphoto from "../assets/img/logout.png";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 
 export default function Footer({ progressPercentege }) {
+  const { setUserdata } = useContext(UserContext);
   const navigate = useNavigate();
   function userLogout() {
     localStorage.clear();
+    setUserdata({});
     navigate("/");
   }
 
