@@ -55,9 +55,11 @@ const LogoutButton = styled.div`
   width: 46px;
   height: 46px;
   position: fixed;
-  bottom: 10px;
+  bottom: 76px;
   right: 6px;
   z-index: 2;
+  border-radius: 50%;
+  background-color: #52b6ff;
   img {
     width: 46px;
     height: 46px;
