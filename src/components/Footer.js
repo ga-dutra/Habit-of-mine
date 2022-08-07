@@ -1,20 +1,33 @@
 import styled from "styled-components";
 import Progressbar from "./Progressbar";
 import { Link } from "react-router-dom";
+import logoutphoto from "../assets/img/logout.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer({ progressPercentege }) {
+  const navigate = useNavigate();
+  function userLogout() {
+    localStorage.clear();
+    navigate("/");
+  }
+
   return (
-    <Wrapper>
-      <Link to="/habitos">
-        <span>Hábitos</span>
-      </Link>
-      <Link to="/hoje">
-        <Progressbar progressPercentege={progressPercentege} />
-      </Link>
-      <Link to="/historico">
-        <span>Histórico</span>
-      </Link>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Link to="/habitos">
+          <span>Hábitos</span>
+        </Link>
+        <Link to="/hoje">
+          <Progressbar progressPercentege={progressPercentege} />
+        </Link>
+        <Link to="/historico">
+          <span>Histórico</span>
+        </Link>
+      </Wrapper>
+      <LogoutButton onClick={userLogout}>
+        <img src={logoutphoto} alt="" />
+      </LogoutButton>
+    </>
   );
 }
 
@@ -36,5 +49,19 @@ const Wrapper = styled.div`
     z-index: 2;
     font-size: 20px;
     color: #52b6ff;
+  }
+`;
+const LogoutButton = styled.div`
+  width: 46px;
+  height: 46px;
+  position: fixed;
+  bottom: 10px;
+  right: 6px;
+  z-index: 2;
+  img {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
   }
 `;

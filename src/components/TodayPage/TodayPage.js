@@ -44,6 +44,7 @@ export default function TodayPage() {
   return (
     <GrayBackground>
       <Header />
+
       <Title
         isDone={habbitsDoneQuantity()}
         areThereTodayHabbits={areThereTodayHabbits}
@@ -60,6 +61,7 @@ export default function TodayPage() {
             : `${habbitsDoneQuantity()}% dos hábitos concluídos`}
         </p>
       </Title>
+
       <HabbitsContainer>
         {!todayHabbits[0]
           ? ""
@@ -84,12 +86,15 @@ export default function TodayPage() {
 
 const Title = styled.div`
   position: fixed;
+  top: 72px;
   display: flex;
-  height: 80px;
-  width: calc(100% - 60px);
+  height: 100px;
+  width: calc(100%);
   margin: 0 30px;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 1;
+  background-color: #e5e5e5;
 
   p {
     margin-top: 12px;
@@ -112,7 +117,7 @@ const Date = styled.div`
 `;
 
 const HabbitsContainer = styled.div`
-  padding-top: 100px;
+  padding-top: 110px;
   margin: 0 30px;
   padding-bottom: 80px;
 `;

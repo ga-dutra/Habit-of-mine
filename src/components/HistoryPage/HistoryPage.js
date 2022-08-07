@@ -12,7 +12,9 @@ export default function HistoryPage() {
   return (
     <GrayBackground>
       <Header />
-      <Wrapper>{/* <Calendar onChange={onChange} value={value} /> */}</Wrapper>
+      <Wrapper>
+        <Calendar onChange={onChange} value={value} />
+      </Wrapper>
       <Footer progressPercentege={progressPercentege} />
     </GrayBackground>
   );
