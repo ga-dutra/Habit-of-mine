@@ -28,7 +28,6 @@ export default function TodayPage() {
 
   function habbitsDoneQuantity() {
     let quantityDone = 0;
-
     if (todayHabbits[0]) {
       todayHabbits.forEach((value) => {
         if (value.done === true) {

@@ -12,7 +12,21 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const loadingAnimation = LoadingAnimation();
   const navigate = useNavigate();
-  const global = useContext(UserContext);
+  const { setUserdata } = useContext(UserContext);
+
+  const userStored = JSON.parse(localStorage.getItem("user"));
+  const userStoredData = {
+    email: userStored.email,
+    password: userStored.password,
+  };
+  const promise = postLogin(userStoredData);
+  promise.then((res) => {
+    setUserdata(res.data);
+    navigate("/hoje");
+  });
+  promise.catch((err) => {
+    return;
+  });
 
   function handleForm({ value, name }) {
     setForm({
@@ -26,7 +40,8 @@ export default function LoginPage() {
     const body = { ...form };
     const promise = postLogin(body);
     promise.then((res) => {
-      global.setUserdata(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      setUserdata(res.data);
       navigate("/hoje");
     });
     promise.catch((err) => {
