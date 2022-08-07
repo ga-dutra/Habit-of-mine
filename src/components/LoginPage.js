@@ -15,19 +15,20 @@ export default function LoginPage() {
   const { setUserdata } = useContext(UserContext);
 
   const userStored = JSON.parse(localStorage.getItem("user"));
-  const userStoredData = {
-    email: userStored.email,
-    password: userStored.password,
-  };
-  const promise = postLogin(userStoredData);
-  promise.then((res) => {
-    setUserdata(res.data);
-    navigate("/hoje");
-  });
-  promise.catch((err) => {
-    return;
-  });
-
+  if (userStored) {
+    const userStoredData = {
+      email: userStored.email,
+      password: userStored.password,
+    };
+    const promise = postLogin(userStoredData);
+    promise.then((res) => {
+      setUserdata(res.data);
+      navigate("/hoje");
+    });
+    promise.catch((err) => {
+      return;
+    });
+  }
   function handleForm({ value, name }) {
     setForm({
       ...form,
