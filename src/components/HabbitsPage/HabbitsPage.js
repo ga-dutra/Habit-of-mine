@@ -65,7 +65,7 @@ export default function HabbitsPage() {
         </Title>
         <p>
           {!allHabbits[0]
-            ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
+            ? "Você ainda não possui hábitos cadastrados. Adicione um hábito para começar a trackear!"
             : ""}
         </p>
         <NewHabbit render={render} setRender={setRender} />
@@ -94,12 +94,14 @@ const Wrapper = styled.div`
   background-color: #e5e5e5;
   padding-bottom: 80px;
   p {
-    padding-top: 110px;
+    padding-top: 80px;
+    padding-bottom: 16px;
     margin-top: 28px;
     color: #666666;
     font-size: 18px;
     width: 100%;
     word-wrap: break-word;
+    line-height: 20px;
   }
 `;
 
