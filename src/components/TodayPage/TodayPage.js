@@ -8,10 +8,11 @@ import { UserContext } from "../../contexts/UserContext";
 import { getTodayHabbits } from "../../services/trackit";
 import TodayHabbit from "./TodayHabbit";
 import { useNavigate } from "react-router-dom";
+import { HabbitContext } from "../../contexts/HabbitContext";
 
 let progressPercentege = 0;
 export default function TodayPage() {
-  const [render, setRender] = useState(1);
+  const { render, setRender } = useContext(HabbitContext);
   const usertoken = useContext(UserContext).userdata.token;
   const [todayHabbits, setTodayHabbits] = useState({});
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ export default function TodayPage() {
 
 const Title = styled.div`
   position: fixed;
-  top: 72px;
+  top: 70px;
   display: flex;
   width: calc(100%);
   margin: 0 30px;

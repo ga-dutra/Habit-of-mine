@@ -1,0 +1,22 @@
+.all {
+  font-family: "Lexend Deca", sans-serif;
+  font-size: 20px;
+}
+
+.green {
+  background-color: green;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.yellow {
+  background-color: yellow;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: rgb(241, 80, 80);
+  padding: 15px;
+  border-radius: 50%;
+}

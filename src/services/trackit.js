@@ -12,8 +12,8 @@ function postSignUp(body) {
   return promise;
 }
 
-function getAllHabbits(body) {
-  const promise = axios.get(`${base_url}/habits`, body);
+function getAllHabbits(config) {
+  const promise = axios.get(`${base_url}/habits`, config);
   return promise;
 }
 
@@ -55,8 +55,8 @@ function deleteHabbit(body, habbitId, config) {
   return promise;
 }
 
-function getHabbitsHistory(body) {
-  const promise = axios.get(`${base_url}/habits/history/daily`, body);
+function getHabbitsHistory(config) {
+  const promise = axios.get(`${base_url}/habits/history/daily`, config);
   return promise;
 }
 

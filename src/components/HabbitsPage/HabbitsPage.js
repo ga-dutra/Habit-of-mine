@@ -9,10 +9,11 @@ import NewHabbit from "./NewHabbit";
 import Habbit from "./Habbit";
 import { getAllHabbits, getTodayHabbits } from "../../services/trackit";
 import { useNavigate } from "react-router-dom";
+import { HabbitContext } from "../../contexts/HabbitContext";
 
 export default function HabbitsPage() {
   const usertoken = useContext(UserContext).userdata.token;
-  const [render, setRender] = useState(1);
+  const { render, setRender } = useContext(HabbitContext);
   const [todayHabbits, setTodayHabbits] = useState({});
   const [allHabbits, setAllHabbits] = useState({});
   const navigate = useNavigate();
@@ -40,8 +41,8 @@ export default function HabbitsPage() {
       setTodayHabbits(res.data);
     });
     promise.catch((err) => {
-      console.log("não deu certo a requisição");
-      // navigate("/");
+      console.log("erro na requisição de hábitos diários");
+      navigate("/");
     });
   }, [render, usertoken, navigate]);
 
