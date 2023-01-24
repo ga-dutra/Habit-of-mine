@@ -1,3 +1,5 @@
+<div align="center"><img src="src/assets/img/logo.png" width="500px"></div>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
