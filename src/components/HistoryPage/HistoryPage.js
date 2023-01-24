@@ -27,6 +27,7 @@ export default function HistoryPage() {
     if (efficiency === 0) efficiency = "red";
     else if (efficiency === 1) efficiency = "green";
     else efficiency = "";
+    console.log(`eficiency: ${efficiency}`);
     return efficiency;
   }
 

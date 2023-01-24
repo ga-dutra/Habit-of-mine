@@ -1,4 +1,5 @@
 import biglogo from "../assets/img/big-logo-trackit.svg";
+import logo from "../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FormWrapper } from "./LoginPage";
@@ -37,7 +38,7 @@ export default function SignUpPage() {
   return (
     <WhiteBackground>
       <FormWrapper enabled={isLoading}>
-        <img src={biglogo} alt="Trackit Logo" />
+        <img src={logo} alt="Trackit Logo" />
         <form
           onSubmit={(e) => {
             e.preventDefault();

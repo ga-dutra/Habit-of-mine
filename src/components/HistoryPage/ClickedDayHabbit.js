@@ -4,6 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { useContext, useEffect } from "react";
 import { HabbitContext } from "../../contexts/HabbitContext";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 export default function ClickedDayHabbit({ dateClicked }) {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function DayHabbit({ habbitName, iconType }) {
 }
 
 const Wrapper = styled.div`
-  margin: 20px 30px;
+  margin: 16px 30px;
   position: relative;
 `;
 
@@ -70,6 +71,7 @@ const DayHabbitContainer = styled.div`
   background-color: #ffffff;
   margin-top: 20px;
   border-radius: 5px;
+  line-height: 20px;
 
   h2 {
     color: #666666;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import biglogo from "../assets/img/big-logo-trackit.svg";
+import logo from "../assets/img/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { postLogin } from "../services/trackit";
@@ -55,7 +56,7 @@ export default function LoginPage() {
   return (
     <WhiteBackground>
       <FormWrapper enabled={isLoading}>
-        <img src={biglogo} alt="Trackit Logo" />
+        <img src={logo} alt="Trackit Logo" />
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -102,6 +103,9 @@ const FormWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
+  img {
+    margin-top: -80px;
+  }
 
   form {
     display: flex;
