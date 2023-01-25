@@ -1,8 +1,25 @@
-<div align="center"><img src="src/assets/img/logo.png" width="500px"></div>
+<div align="center"><img src="src/assets/img/logo.png" width="380px"></div>
 
-# Getting Started with Create React App
+<div align="center">
+  Keep track of your personal habits with Habit of mine!
+  <br>
+</div>
+ <h2>About</h2>
+Habit of mine is an application in React in which the user can add habits and track them, following the compliance, or not, of each one of them.
+  <br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ <h2>Tecnologies</h2>
+ The following tools and frameworks were used in the construction of the project:
+ <br>
+
+ <p>
+
+![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![ReactJS](https://img.shields.io/badge/ReactJS-13cf35?style=for-the-badge&logo=react&logoColor=080808)
+![Styled-Components](https://img.shields.io/badge/Styled-Components-61DAFB?style=for-the-badge&logo=styledcomponents&logoColor=61DAFB)
+
+</p>
+
 
 ## Available Scripts
 
