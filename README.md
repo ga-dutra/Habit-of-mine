@@ -22,13 +22,13 @@ Habit of mine is an application in React in which the user can add habits and tr
 
  <h2>Functionalities</h2>
   <ul>
-    <li> Sign up, Login and Logout</li>
+    <li>Sign up, Login and Logout</li>
   <br>
-      <li> Register your habbits, and the week days you want to do them</li>
+    <li>Register your habbits, and the week days you want to do them</li>
   <br>
-        <li>Check and uncheck your daily habbits</li>
+    <li>Check and uncheck your daily habbits</li>
   <br>
-        <li>Select a day on the agenda and check the habits performed or not on that day</li>
+    <li>Select a day on the agenda and check the habits performed or not on that day</li>
   </ul>
 
 ## Available Scripts
