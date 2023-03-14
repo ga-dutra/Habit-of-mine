@@ -29,9 +29,6 @@ Habit of mine is an application in React in which the user can add habits and tr
         <li>Check and uncheck your daily habbits</li>
   <br>
         <li>Select a day on the agenda and check the habits performed or not on that day</li>
-<br>
-
-  
   </ul>
 
 ## Available Scripts
